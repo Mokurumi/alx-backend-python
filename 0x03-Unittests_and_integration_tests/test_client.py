@@ -29,7 +29,6 @@ class TestGithubOrgClient(unittest.TestCase):
         client.org()
         mock_get.assert_called_once_with(test_url)
 
-
     @patch("client.GithubOrgClient.org", new_callable=TEST_PAYLOAD)
     def test_public_repos_url(self, mock_org):
         """
@@ -38,8 +37,8 @@ class TestGithubOrgClient(unittest.TestCase):
         client = GithubOrgClient("test")
         self.assertEqual(client._public_repos_url, mock_org["repos_url"])
 
-
-    @patch("client.GithubOrgClient._public_repos_url", new_callable=TEST_PAYLOAD)
+    @patch("client.GithubOrgClient._public_repos_url",
+        new_callable=TEST_PAYLOAD)
     @patch("client.get_json")
     def test_public_repos(self, mock_get, mock_url):
         """
@@ -49,7 +48,6 @@ class TestGithubOrgClient(unittest.TestCase):
         self.assertEqual(client.public_repos(), mock_get.return_value)
         mock_get.assert_called_once()
         mock_url.assert_called_once()
-
 
     @parameterized.expand([
         ({"license": {"key": "my_license"}}, "my_license", True),
@@ -67,7 +65,6 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
     """
     TestIntegrationGithubOrgClient class
     """
-    """Integration test"""
     @classmethod
     def setUpClass(cls):
         """
