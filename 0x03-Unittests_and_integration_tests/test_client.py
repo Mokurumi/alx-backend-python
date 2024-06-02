@@ -38,7 +38,7 @@ class TestGithubOrgClient(unittest.TestCase):
         self.assertEqual(client._public_repos_url, mock_org["repos_url"])
 
     @patch("client.GithubOrgClient._public_repos_url",
-            new_callable=TEST_PAYLOAD)
+           new_callable=TEST_PAYLOAD)
     @patch("client.get_json")
     def test_public_repos(self, mock_get, mock_url):
         """
